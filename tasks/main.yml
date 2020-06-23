@@ -1,0 +1,50 @@
+---
+
+- include_tasks: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
+  tags: 'aws_config_cli'
+
+- include_tasks: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+  tags: 'aws_config_cli'
+
+- name: Get User's home
+  user:
+    name: "{{ aws_config_cli_user }}"
+    state: present
+  register: user_registered
+
+- name: Set home directory of the user
+  set_fact:
+    home_dir: "{{ user_registered['home']}}"
+
+- name: User's home
+  debug:
+    var: home_dir
+
+- name: 'Create the AWS config directory'
+  file: >
+    path={{ home_dir }}/.aws
+    state=directory
+    owner={{ aws_config_cli_user }}
+    group={{ aws_config_cli_group }}
+    mode=0755
+  tags: 'aws_config_cli'
+
+- name: 'Copy AWS CLI config'
+  template: >
+    src=aws_cli_config.j2
+    dest={{ home_dir }}/.aws/config
+    owner={{ aws_config_cli_user }}
+    group={{ aws_config_cli_group }}
+    mode=0600
+  tags: 'aws_config_cli'
+
+- name: 'Copy AWS CLI credentials'
+  template: >
+    src=aws_cli_credentials.j2
+    dest={{ home_dir }}/.aws/credentials
+    owner={{ aws_config_cli_user }}
+    group={{ aws_config_cli_group }}
+    mode=0600
+  tags: 'aws_config_cli'

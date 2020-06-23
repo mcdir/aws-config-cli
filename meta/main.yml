@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: mcdir
+  description: >-
+    Installs and configures the AWS CLI and config for conveniently
+    interacting with AWS services such as S3, EC2 , etcR.
+  license: MIT
+  min_ansible_version: 2
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - xenial  # 16.04
+        - bionic  # 18.04
+        - focal  # 20.04
+  categories:
+    - awscli
+dependencies: []

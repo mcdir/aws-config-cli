@@ -1,0 +1,22 @@
+---
+
+aws_config_cli_packages:
+  - python3-pip
+  - python3-setuptools
+
+# Package states: ( present | latest )
+aws_config_cli_packages_state: present
+
+aws_config_cli_user: '{{ ansible_user }}'
+aws_config_cli_group: '{{ ansible_user }}'
+
+# common
+aws_config_cli_config:
+  default:
+    output: 'json'
+    region: 'ap-southeast-2'
+
+aws_config_cli_credentials:
+  default:
+    aws_access_key_id: 'YOUR_ACCESS_KEY_ID'
+    aws_secret_access_key: 'YOUR_SECRET_ACCESS_KEY'
