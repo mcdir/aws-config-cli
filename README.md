@@ -2,6 +2,8 @@
 
 Installs and configures the AWS CLI for conveniently interacting with AWS services such as S3, EC2, etc.
 
+![CI](https://travis-ci.org/mcdir/aws-config-cli.svg?branch=master)
+
 ## Requirements
 
 -   Ansible 2.4+
