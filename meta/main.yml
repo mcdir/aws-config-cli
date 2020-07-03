@@ -14,7 +14,10 @@ galaxy_info:
       versions:
         - xenial  # 16.04
         - bionic  # 18.04
-        - focal  # 20.04
-  categories:
+        - focal   # 20.04
+  galaxy_tags:
     - awscli
+    - aws
+    - cloud
+    - development
 dependencies: []

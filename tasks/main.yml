@@ -16,7 +16,7 @@
 
 - name: Set home directory of the user
   set_fact:
-    home_dir: "{{ user_registered['home']}}"
+    home_dir: "{{ user_registered['home'] }}"
 
 - name: User's home
   debug:
