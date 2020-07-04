@@ -8,32 +8,19 @@ lint: |
   ansible-lint
   flake8
 platforms:
-  - name: EL7
-    image: centos:7
+  - name: instance
+    image: "${MOLECULE_DISTRO}"
     pre_build_image: true
+    privileged: true
     groups:
-      - rhel_family
-  - name: Xenial
-    image: ubuntu:16.04
-    pre_build_image: true
-    groups:
-      - debian_family
-  - name: Bionic
-    image: ubuntu:18.04
-    pre_build_image: true
-    groups:
-      - debian_family
-  - name: Focal
-    image: ubuntu:20.04
-    pre_build_image: true
-    groups:
-      - debian_family
+      - "${MOLECULE_DISTRO_GROUPS}"
 provisioner:
   name: ansible
   log: true
   lint: |
     ansible-lint
   playbooks:
+    prepare: prepare_${MOLECULE_DISTRO_GROUPS}.yml
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
 verifier:
   name: ansible
