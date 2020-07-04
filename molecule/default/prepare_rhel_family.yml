@@ -1,0 +1,18 @@
+---
+
+- name: "Prepare RHEL/Fedora"
+  hosts: rhel_family
+  gather_facts: false
+  tasks:
+    - name: "Install python for Ansible"
+      raw: yum install -y python3 python-simplejson redhat-lsb
+      changed_when: false
+
+- name: "Get info"
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    # - debug: var=ansible_facts
+    - name: "OS"
+      debug: msg="{{ ansible_distribution }} {{ ansible_distribution_version }}"

@@ -8,6 +8,15 @@
   vars:
     ansible_python_interpreter: /usr/bin/python
   tags: 'aws_config_cli_requirements'
+  when: ansible_lsb.id != 'Fedora'
+
+- name: "Fedora | Packages | Install required packages"
+  yum:
+    name: "{{ aws_config_cli_packages }}"
+    state: "{{ aws_config_cli_packages_state }}"
+    update_cache: true
+  tags: 'aws_config_cli_requirements'
+  when: ansible_lsb.id == 'Fedora'
 
 - name: 'RHEL | Install AWS CLI'
   pip:
