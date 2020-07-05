@@ -1,4 +1,20 @@
 ---
+
+scenario:
+  name: default
+  test_sequence:
+    - lint
+    - destroy
+    - dependency
+    - syntax
+    - create
+    - prepare
+    - converge
+    - idempotence
+    - side_effect
+    - verify
+    - destroy
+
 dependency:
   name: galaxy
 driver:
@@ -9,20 +25,21 @@ lint: |
   flake8
 platforms:
   - name: instance
-    image: "${MOLECULE_DISTRO}"
+    image: "${MOLECULE_DISTRO:-ubuntu:18.04}"
     pre_build_image: true
     privileged: true
     groups:
-      - "${MOLECULE_DISTRO_GROUPS}"
+      - "${MOLECULE_DISTRO_GROUPS:-debian_family}"
 provisioner:
   name: ansible
   log: true
   lint: |
     ansible-lint
   playbooks:
-    prepare: prepare_${MOLECULE_DISTRO_GROUPS}.yml
+    prepare: prepare_${MOLECULE_DISTRO_GROUPS:-debian_family}.yml
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
 verifier:
-  name: ansible
-  lint: |
-    flake8
+  name: testinfra
+  options:
+    # debug / print
+    s: true
