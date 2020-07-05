@@ -17,7 +17,13 @@ Installs and configures the AWS CLI for conveniently interacting with AWS servic
 - Ubuntu 18.04 
 - Ubuntu 20.04 
 - CentOS 7.x
-
+- Fedora 27
+- Fedora 28
+- Fedora 29
+- Fedora 30
+- Fedora 31
+- Debian Stretch
+- Debian Buster
 
 ## Role Variables
 
