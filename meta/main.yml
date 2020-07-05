@@ -16,7 +16,6 @@ galaxy_info:
         - 28
         - 29
         - 30
-        - 31
     - name: Debian
       versions:
         - stretch
