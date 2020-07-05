@@ -17,6 +17,10 @@ galaxy_info:
         - 29
         - 30
         - 31
+    - name: Debian
+      versions:
+        - 9
+        - 10
     - name: Ubuntu
       versions:
         - xenial  # 16.04
