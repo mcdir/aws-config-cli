@@ -21,7 +21,6 @@ Installs and configures the AWS CLI for conveniently interacting with AWS servic
 - Fedora 28
 - Fedora 29
 - Fedora 30
-- Fedora 31
 - Debian Stretch
 - Debian Buster
 
