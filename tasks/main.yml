@@ -16,15 +16,15 @@
 
 - name: Set home directory of the user
   set_fact:
-    home_dir: "{{ user_registered['home'] }}"
+    user_home_dir: "{{ user_registered['home'] }}"
 
 - name: User's home
   debug:
-    var: home_dir
+    var: user_home_dir
 
 - name: 'Create the AWS config directory'
   file: >
-    path={{ home_dir }}/.aws
+    path={{ user_home_dir }}/.aws
     state=directory
     owner={{ aws_config_cli_user }}
     group={{ aws_config_cli_group }}
@@ -34,7 +34,7 @@
 - name: 'Copy AWS CLI config'
   template: >
     src=aws_cli_config.j2
-    dest={{ home_dir }}/.aws/config
+    dest={{ user_home_dir }}/.aws/config
     owner={{ aws_config_cli_user }}
     group={{ aws_config_cli_group }}
     mode=0600
@@ -43,7 +43,7 @@
 - name: 'Copy AWS CLI credentials'
   template: >
     src=aws_cli_credentials.j2
-    dest={{ home_dir }}/.aws/credentials
+    dest={{ user_home_dir }}/.aws/credentials
     owner={{ aws_config_cli_user }}
     group={{ aws_config_cli_group }}
     mode=0600
